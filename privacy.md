@@ -55,4 +55,4 @@ with a new effective date.
 ## Contact
 
 Igor Moreira
-igorbrunelimoreira@gmail.com
+dev@polygotcha.com
