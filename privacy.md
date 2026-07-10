@@ -43,9 +43,8 @@ synced or transmitted anywhere by PolyGotcha.
 Subscriptions and the lifetime pass are processed by Apple through the App
 Store. We never see your payment details. Purchase state is verified on
 device through StoreKit, and a single yes or no flag is shared between the
-app and the keyboard through your device's keychain so the keyboard knows
-Pro is active. That flag contains no personal data and never leaves your
-device.
+app and the keyboard on your device so the keyboard knows Pro is active.
+That flag contains no personal data and never leaves your device.
 
 ## Children
 
