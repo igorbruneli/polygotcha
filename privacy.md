@@ -1,6 +1,6 @@
 # PolyGotcha Privacy Policy
 
-Effective date: July 8, 2026
+Effective date: July 10, 2026
 
 PolyGotcha is an iOS keyboard that translates what you type. It is built so
 that your privacy does not depend on promises; it depends on how iOS works.
