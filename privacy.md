@@ -20,10 +20,17 @@ when you use translation.
 
 ## Translation
 
-PolyGotcha offers two translation models, all operated by Apple:
+Translation is performed by Apple's models on your device:
 
-- Apple Translation and Apple Intelligence run entirely on your device.
-  Text processed by them never leaves your iPhone.
+- Apple Intelligence, the current translation model, runs entirely on your
+  iPhone. Text it processes never leaves your device.
+- Apple Translation, also fully on-device, is included in the app but stays
+  disabled until Apple makes it available to keyboards.
+
+The current version never uses the network for translation. If a future
+version offers Apple's Private Cloud Compute model, it would send the text
+being translated to Apple's end to end encrypted, stateless service; it
+would be optional, clearly labeled, and this policy would be updated first.
 
 ## Settings
 
