@@ -136,10 +136,27 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav .wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-weight: 700;
   letter-spacing: -0.02em;
   font-size: 16px;
   margin-right: 14px;
+}
+
+/* The favicon's rounded "P", so the compressed mobile nav still reads as
+   the logo. Ink-on-paper flips with the theme automatically. */
+.nav .mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .nav .links {
@@ -160,6 +177,9 @@ a { color: inherit; text-decoration: none; }
 .nav .links a:hover { color: var(--ink); background: var(--hairline); }
 
 .nav .cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
   font-weight: 600;
   background: var(--ink);
@@ -172,19 +192,35 @@ a { color: inherit; text-decoration: none; }
 
 .nav .cta:hover { transform: scale(1.04); }
 
-/* Mobile nav: everything tightens, and the Support link (whose email is in
-   the footer anyway) yields first so the pill never overflows. */
+.nav .cta-icon {
+  display: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Mobile nav: the ends collapse to icons (the P mark and a download glyph)
+   so all three text links stay visible and one tap away. */
 @media (max-width: 640px) {
   .navwrap { top: 10px; gap: 6px; padding: 0 10px; }
-  .nav { padding: 5px 5px 5px 14px; gap: 0; }
-  .nav .wordmark { font-size: 15px; margin-right: 6px; }
-  .nav .links a { font-size: 13px; padding: 7px 7px; }
-  .nav .cta { font-size: 13px; padding: 8px 13px; margin-left: 5px; }
+  .nav { padding: 5px 5px 5px 8px; gap: 0; }
+  .nav .wordmark { margin-right: 4px; }
+  .nav .wordmark .name { display: none; }
+  .nav .mark { width: 30px; height: 30px; border-radius: 9px; font-size: 15px; }
+  .nav .links a { font-size: 13px; padding: 7px 8px; }
+  .nav .cta { margin-left: 4px; padding: 0; width: 40px; height: 40px; }
+  .nav .cta-text { display: none; }
+  .nav .cta-icon { display: block; }
   .theme-bubble { width: 44px; height: 44px; }
   .theme-bubble svg { width: 19px; height: 19px; }
 }
 
-@media (max-width: 430px) {
+/* Absolute-worst-case safety valve for very narrow screens. */
+@media (max-width: 340px) {
   .nav .links .sup { display: none; }
 }
 
