@@ -1,6 +1,6 @@
-// PolyGotcha site: theme toggle, glass nav state, scroll reveals, and the
-// live keyboard demo. Shared by every page; the demo bails out where there
-// is no keyboard. No dependencies.
+// PolyGotcha site: language picker, theme toggle, glass nav state, scroll
+// reveals, and the live keyboard demo. Shared by every page; the demo bails
+// out where there is no keyboard. No dependencies. Dictionaries in i18n.js.
 
 (function () {
   "use strict";
@@ -15,6 +15,95 @@
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+  }
+
+  // ----- Language -----
+  //
+  // English lives in the markup; dictionaries override per data-i18n key.
+  // Resolution: ?lang= param, then the stored choice, then the browser
+  // language, then English.
+
+  var dicts = window.PG_I18N || {};
+  var langNames = window.PG_LANGS || { en: "English" };
+  var lang = "en";
+  try {
+    var requested = new URLSearchParams(location.search).get("lang")
+      || localStorage.getItem("pg-lang");
+    if (requested && langNames[requested]) {
+      lang = requested;
+    } else {
+      var preferred = navigator.languages || [navigator.language || "en"];
+      for (var i = 0; i < preferred.length; i++) {
+        var code = String(preferred[i]).slice(0, 2).toLowerCase();
+        if (langNames[code]) { lang = code; break; }
+      }
+    }
+  } catch (e) {}
+
+  function t(key, fallback) {
+    var dict = dicts[lang];
+    return (dict && dict[key]) || fallback;
+  }
+
+  var i18nNodes = document.querySelectorAll("[data-i18n]");
+  i18nNodes.forEach(function (node) { node.__original = node.innerHTML; });
+
+  var themeRefresh = null; // assigned by the theme section below
+
+  function applyLang(code) {
+    lang = code;
+    document.documentElement.lang = code;
+    i18nNodes.forEach(function (node) {
+      var dict = dicts[code];
+      var value = dict && dict[node.getAttribute("data-i18n")];
+      node.innerHTML = value || node.__original;
+    });
+    var bubble = document.getElementById("lang-toggle");
+    if (bubble) {
+      bubble.textContent = code.toUpperCase();
+      bubble.setAttribute("aria-label", t("lang.label", "Language"));
+      bubble.title = t("lang.label", "Language");
+    }
+    var cta = document.querySelector(".nav .cta");
+    if (cta) cta.setAttribute("aria-label", t("nav.get", "Get the app"));
+    if (themeRefresh) themeRefresh();
+  }
+
+  var langToggle = document.getElementById("lang-toggle");
+  var langMenu = document.getElementById("lang-menu");
+  if (langToggle && langMenu) {
+    var closeMenu = function () {
+      langMenu.classList.remove("open");
+      langToggle.setAttribute("aria-expanded", "false");
+    };
+    Object.keys(langNames).forEach(function (code) {
+      var item = document.createElement("button");
+      item.type = "button";
+      item.setAttribute("role", "menuitem");
+      item.textContent = langNames[code];
+      if (code === lang) item.classList.add("active");
+      item.addEventListener("click", function () {
+        try { localStorage.setItem("pg-lang", code); } catch (e) {}
+        applyLang(code);
+        langMenu.querySelectorAll("button").forEach(function (other) {
+          other.classList.toggle("active", other === item);
+        });
+        closeMenu();
+      });
+      langMenu.appendChild(item);
+    });
+    langToggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      var opening = !langMenu.classList.contains("open");
+      langMenu.classList.toggle("open", opening);
+      langToggle.setAttribute("aria-expanded", String(opening));
+    });
+    document.addEventListener("click", function (event) {
+      if (!langMenu.contains(event.target)) closeMenu();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
+    });
   }
 
   // ----- Theme toggle -----
@@ -52,7 +141,9 @@
       toggle.innerHTML = icons[mode];
       toggle.classList.toggle("is-light", mode === "light");
       toggle.classList.toggle("is-dark", mode === "dark");
-      var label = mode === "dark" ? "Switch to light mode" : "Switch to dark mode";
+      var label = mode === "dark"
+        ? t("theme.toLight", "Switch to light mode")
+        : t("theme.toDark", "Switch to dark mode");
       toggle.setAttribute("aria-label", label);
       toggle.title = label;
       // Keep the browser chrome color in step with what is displayed.
@@ -73,7 +164,11 @@
     });
 
     render();
+    themeRefresh = render;
   }
+
+  // Translate the page into the resolved language (a no-op for English).
+  applyLang(lang);
 
   // ----- Scroll reveals -----
 
@@ -170,7 +265,7 @@
     var still = scenes[0];
     bubble.textContent = still.incoming;
     composed.textContent = still.translated;
-    status.innerHTML = "&#10003; Translated";
+    status.innerHTML = "&#10003; " + t("demo.translated", "Translated");
     document.getElementById("caret").remove();
     return;
   }
@@ -202,7 +297,7 @@
       chipFrom.textContent = scene.from;
       chipTo.textContent = scene.to;
       composed.textContent = "";
-      status.textContent = "Type, pause, translate";
+      status.textContent = t("demo.hint", "Type, pause, translate");
       status.classList.remove("has-preview");
       action.innerHTML = "&#10003;";
 
@@ -210,7 +305,7 @@
       await type(scene.typed);
       await wait(650);
 
-      status.textContent = "Translating…";
+      status.textContent = t("demo.translating", "Translating…");
       await wait(750);
 
       status.innerHTML = "";
@@ -221,7 +316,7 @@
       await wait(1250);
 
       composed.textContent = scene.translated;
-      status.innerHTML = "&#10003; Translated";
+      status.innerHTML = "&#10003; " + t("demo.translated", "Translated");
       action.innerHTML = "&#8617;";
       await wait(2100);
       index++;

@@ -9,9 +9,11 @@
   <meta property="og:description" content="The iOS keyboard that translates as you type. On device. Private by construction.">
   <meta property="og:url" content="https://polygotcha.com">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://polygotcha.com/icon-512.png">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121316">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1c20'/%3E%3Ctext x='32' y='43' font-family='-apple-system,Helvetica' font-size='32' font-weight='700' fill='%23f7f6f3' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/style.css">
   <script>
     // Apply the stored theme before first paint so there is no flash.
@@ -22,29 +24,33 @@
 
   <div class="navwrap" id="navwrap">
     <nav class="nav" aria-label="Main">
-      <a class="wordmark" href="/"><span class="mark" aria-hidden="true">P</span><span class="name">PolyGotcha</span></a>
+      <a class="wordmark" href="/"><img class="mark" src="/icon-192.png" alt=""><span class="name">PolyGotcha</span></a>
       <div class="links">
-        <a href="/features">Features</a>
-        <a href="/privacy">Privacy</a>
-        <a class="sup" href="mailto:dev@polygotcha.com">Support</a>
+        <a href="/features" data-i18n="nav.features">Features</a>
+        <a href="/privacy" data-i18n="nav.privacy">Privacy</a>
+        <a class="sup" href="mailto:dev@polygotcha.com" data-i18n="nav.support">Support</a>
       </div>
       <!-- TODO: swap for the App Store URL once 1.0 is live. -->
-      <a class="cta" href="#get" aria-label="Get the app"><span class="cta-text">Get the app</span><svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></svg></a>
+      <a class="cta" href="#get" aria-label="Get the app"><span class="cta-text" data-i18n="nav.get">Get the app</span><svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></svg></a>
     </nav>
-    <button class="theme-bubble" id="theme-toggle" type="button" aria-label="Theme: Auto"></button>
+    <div class="lang-wrap">
+      <button class="lang-bubble" id="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language">EN</button>
+      <div class="lang-menu" id="lang-menu" role="menu"></div>
+    </div>
+    <button class="theme-bubble" id="theme-toggle" type="button" aria-label="Theme"></button>
   </div>
 
   <header class="hero wrap">
-    <h1 class="reveal">Type in yours.<br><span class="theirs">Send in theirs.</span></h1>
-    <p class="reveal">PolyGotcha is an iOS keyboard that translates as you type. In any app, on your device.</p>
+    <h1 class="reveal" data-i18n="hero.h1">Type in yours.<br><span class="theirs">Send in theirs.</span></h1>
+    <p class="reveal" data-i18n="hero.p">PolyGotcha is an iOS keyboard that translates as you type. In any app, on your device.</p>
     <div class="cta-row reveal" id="get">
-      <span class="pill">Coming soon to the App&nbsp;Store</span>
-      <a class="quiet-link" href="/privacy">Read the privacy policy</a>
+      <span class="pill" data-i18n="hero.cta">Coming soon to the App&nbsp;Store</span>
+      <a class="quiet-link" href="/privacy" data-i18n="hero.privacylink">Read the privacy policy</a>
     </div>
   </header>
 
   <section class="demo wrap reveal">
-    <div class="device" id="device" aria-label="Animated demo: a message typed in English is translated to French by the keyboard">
+    <div class="device" id="device" aria-label="Animated demo: a message typed in English is translated by the keyboard">
       <div class="chat">
         <span class="bubble" id="bubble">Salut ! Tu viens ce soir ?</span>
         <div class="compose">
@@ -54,7 +60,7 @@
       <div class="kbd">
         <div class="kbar">
           <span class="kchip"><span id="chip-from">EN</span><span class="arrows">&#8644;</span><span id="chip-to">FR</span></span>
-          <span class="kstatus" id="kstatus">Type, pause, translate</span>
+          <span class="kstatus" id="kstatus" data-i18n="demo.hint">Type, pause, translate</span>
           <span class="kround prime" id="kaction">&#10003;</span>
           <span class="kround">&#9881;</span>
         </div>
@@ -64,41 +70,42 @@
   </section>
 
   <section class="feature wrap" id="privacy-first">
-    <div class="kicker reveal">Private by construction</div>
-    <h2 class="reveal">Never asks for Full&nbsp;Access.</h2>
-    <p class="reveal">Full Access is the permission that lets keyboards reach the internet. PolyGotcha never requests it, so iOS itself keeps everything you type on your device. No servers, no analytics, no tracking. Nothing to trust, only how iPhone works.</p>
+    <div class="kicker reveal" data-i18n="f1.k">Private by construction</div>
+    <h2 class="reveal" data-i18n="f1.h">Never asks for Full&nbsp;Access.</h2>
+    <p class="reveal" data-i18n="f1.p">Full Access is the permission that lets keyboards reach the internet. PolyGotcha never requests it, so iOS itself keeps everything you type on your device. No servers, no analytics, no tracking. Nothing to trust, only how iPhone works.</p>
   </section>
 
   <section class="feature wrap">
-    <div class="kicker reveal">On-device intelligence</div>
-    <h2 class="reveal">Apple Intelligence does the translating.</h2>
-    <p class="reveal">Translation runs on your iPhone with Apple's models. Pick a tone, casual, formal, or street, and the translation follows. It detects the language you typed and picks the direction automatically.</p>
+    <div class="kicker reveal" data-i18n="f2.k">On-device intelligence</div>
+    <h2 class="reveal" data-i18n="f2.h">Apple Intelligence does the translating.</h2>
+    <p class="reveal" data-i18n="f2.p">Translation runs on your iPhone with Apple's models. Pick a tone, casual, formal, or street, and the translation follows. It detects the language you typed and picks the direction automatically.</p>
   </section>
 
   <section class="feature wrap">
-    <div class="kicker reveal">Made for conversations</div>
-    <h2 class="reveal">Type. Pause. Send.</h2>
-    <p class="reveal">Write your message normally and the translation appears above the keys. One tap replaces your text; undo is one tap away. It works in every app, from Messages to WhatsApp to email.</p>
-    <div class="langline reveal">Ol&aacute;. Bonjour. <em>Hello.</em></div>
+    <div class="kicker reveal" data-i18n="f3.k">Made for conversations</div>
+    <h2 class="reveal" data-i18n="f3.h">Type. Pause. Send.</h2>
+    <p class="reveal" data-i18n="f3.p">Write your message normally and the translation appears above the keys. One tap replaces your text; undo is one tap away. It works in every app, from Messages to WhatsApp to email.</p>
+    <div class="langline reveal" data-i18n="f3.lang">Ol&aacute;. Bonjour. <em>Hello.</em></div>
   </section>
 
   <section class="manifesto">
     <div class="wrap">
-      <h2 class="reveal">Privacy that doesn't depend on promises.</h2>
-      <p class="reveal">Most keyboards ask you to trust a privacy policy. PolyGotcha is built so the operating system enforces one. Read ours anyway; it is short, because there is nothing to disclose.</p>
-      <a class="pill reveal" href="/privacy">Read the privacy policy</a>
+      <h2 class="reveal" data-i18n="man.h">Privacy that doesn't depend on promises.</h2>
+      <p class="reveal" data-i18n="man.p">Most keyboards ask you to trust a privacy policy. PolyGotcha is built so the operating system enforces one. Read ours anyway; it is short, because there is nothing to disclose.</p>
+      <a class="pill reveal" href="/privacy" data-i18n="hero.privacylink">Read the privacy policy</a>
     </div>
   </section>
 
   <footer>
     <div class="frow">
-      <a href="/features">Features</a>
-      <a href="/privacy">Privacy</a>
+      <a href="/features" data-i18n="nav.features">Features</a>
+      <a href="/privacy" data-i18n="nav.privacy">Privacy</a>
       <a href="mailto:dev@polygotcha.com">dev@polygotcha.com</a>
     </div>
     <div>&copy; 2026 Igor Moreira</div>
   </footer>
 
+  <script src="/i18n.js"></script>
   <script src="/site.js"></script>
 </body>
 </html>

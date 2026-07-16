@@ -88,7 +88,8 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
 }
 
-.theme-bubble {
+.theme-bubble,
+.lang-bubble {
   width: 53px;
   height: 53px;
   border-radius: 999px;
@@ -104,7 +105,53 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
 }
 
-.theme-bubble:hover { color: var(--ink); transform: scale(1.06); }
+.theme-bubble:hover,
+.lang-bubble:hover { color: var(--ink); transform: scale(1.06); }
+
+.lang-bubble {
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.lang-wrap { position: relative; }
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  display: none;
+  flex-direction: column;
+  min-width: 158px;
+  padding: 6px;
+  border-radius: 18px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.lang-menu.open { display: flex; }
+
+.lang-menu button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-radius: 12px;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.lang-menu button:hover { color: var(--ink); background: var(--hairline); }
+
+.lang-menu button.active { color: var(--ink); font-weight: 650; }
 
 .theme-bubble svg {
   width: 21px;
@@ -145,18 +192,13 @@ a { color: inherit; text-decoration: none; }
   margin-right: 14px;
 }
 
-/* The favicon's rounded "P", so the compressed mobile nav still reads as
-   the logo. Ink-on-paper flips with the theme automatically. */
+/* The real app icon, so the compressed mobile nav still reads as the logo. */
 .nav .mark {
   width: 26px;
   height: 26px;
   border-radius: 8px;
-  background: var(--ink);
-  color: var(--bg);
-  display: grid;
-  place-items: center;
-  font-size: 14px;
-  font-weight: 800;
+  display: block;
+  object-fit: cover;
 }
 
 .nav .links {
@@ -203,25 +245,23 @@ a { color: inherit; text-decoration: none; }
   stroke-linejoin: round;
 }
 
-/* Mobile nav: the ends collapse to icons (the P mark and a download glyph)
-   so all three text links stay visible and one tap away. */
+/* Mobile nav: the ends collapse to icons (the app icon and a download
+   glyph). With two bubbles alongside, the Support link (email is in the
+   footer) yields on phones. */
 @media (max-width: 640px) {
   .navwrap { top: 10px; gap: 6px; padding: 0 10px; }
   .nav { padding: 5px 5px 5px 8px; gap: 0; }
   .nav .wordmark { margin-right: 4px; }
   .nav .wordmark .name { display: none; }
-  .nav .mark { width: 30px; height: 30px; border-radius: 9px; font-size: 15px; }
+  .nav .mark { width: 30px; height: 30px; border-radius: 9px; }
   .nav .links a { font-size: 13px; padding: 7px 8px; }
+  .nav .links .sup { display: none; }
   .nav .cta { margin-left: 4px; padding: 0; width: 40px; height: 40px; }
   .nav .cta-text { display: none; }
   .nav .cta-icon { display: block; }
-  .theme-bubble { width: 44px; height: 44px; }
+  .theme-bubble, .lang-bubble { width: 44px; height: 44px; }
   .theme-bubble svg { width: 19px; height: 19px; }
-}
-
-/* Absolute-worst-case safety valve for very narrow screens. */
-@media (max-width: 340px) {
-  .nav .links .sup { display: none; }
+  .lang-bubble { font-size: 11.5px; }
 }
 
 /* ---------- Shared layout ---------- */
