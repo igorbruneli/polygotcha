@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Features - PolyGotcha</title>
+  <meta name="description" content="Everything PolyGotcha does: on-device translation as you type, tones, layouts, emoji, and every setting. All of it in a 3.5 MB app.">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121316">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1c20'/%3E%3Ctext x='32' y='43' font-family='-apple-system,Helvetica' font-size='32' font-weight='700' fill='%23f7f6f3' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    // Apply the stored theme before first paint so there is no flash.
+    try { var t = localStorage.getItem("pg-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <div class="navwrap" id="navwrap">
+    <nav class="nav" aria-label="Main">
+      <a class="wordmark" href="/">PolyGotcha</a>
+      <div class="links">
+        <a href="/features">Features</a>
+        <a href="/privacy">Privacy</a>
+        <a href="mailto:dev@polygotcha.com">Support</a>
+      </div>
+      <a class="cta" href="/#get">Get the app</a>
+    </nav>
+    <button class="theme-bubble" id="theme-toggle" type="button" aria-label="Theme: Auto"></button>
+  </div>
+
+  <header class="fhero">
+    <h1 class="reveal">Everything it does.</h1>
+    <p class="reveal">A full keyboard and a translator, entirely on your device. Nothing here needs the internet.</p>
+  </header>
+
+  <section class="fgroup">
+    <div class="kicker reveal">Translation</div>
+    <div class="fgrid">
+      <div class="fcell reveal">
+        <h3>Type, pause, translate</h3>
+        <p>Write your message normally. After a short pause the translation appears above the keys; one tap replaces your text, and undo is one tap away.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Three modes</h3>
+        <p>Manual, Preview, or Automatic, with an adjustable pause from half a second to three. You decide how eager the keyboard is.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Two-way conversations</h3>
+        <p>It detects the language you typed and picks the direction automatically, so one pair carries a whole back-and-forth.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Four tones</h3>
+        <p>Neutral, Casual, Street, or Formal. The register you choose is remembered per language pair, so work stays formal and friends stay casual.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Recent pairs</h3>
+        <p>The pairs you actually use surface as one-tap chips in the keyboard, no menu digging mid-conversation.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Apple's models, on device</h3>
+        <p>Apple Intelligence does the translating today. Apple Translation and its offline language packs are built in, ready the day Apple opens them to keyboards.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fgroup">
+    <div class="kicker reveal">Keyboard</div>
+    <div class="fgrid">
+      <div class="fcell reveal">
+        <h3>Layouts that follow you</h3>
+        <p>QWERTY, AZERTY, or QWERTZ, chosen automatically from the language you type in, or pinned manually if you prefer one.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Number row</h3>
+        <p>An optional row of digits above the letters, system-keyboard style.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Emoji</h3>
+        <p>A stock-style picker with every category and your frequently used up front.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Accents and holds</h3>
+        <p>Long-press any letter for its accents, with an adjustable hold delay. Hold the space bar to move the cursor precisely.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Typing niceties</h3>
+        <p>Auto-capitalization, double-space period, and key preview balloons. Each one has a switch, so the keyboard behaves exactly the way you expect.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Real keyboard feel</h3>
+        <p>Full multi-touch, accelerating key repeat on delete, and touch handling modeled on the system keyboard, gaps included.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fgroup">
+    <div class="kicker reveal">Settings and languages</div>
+    <div class="fgrid">
+      <div class="fcell reveal">
+        <h3>Set once, in the app</h3>
+        <p>Preferences live in the app's Settings tab and reach the keyboard automatically. Daily controls, pair, mode, and tone, stay right on the keyboard.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Speaks your language</h3>
+        <p>The app and keyboard are localized in English, French, and Portuguese, both Brazil and Portugal.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="statband">
+    <div class="big reveal">3.5&nbsp;MB</div>
+    <p class="reveal">Smaller than a single photo. No frameworks, no trackers, no bloat: the keyboard appears instantly, and translation runs at the speed of your iPhone because nothing ever waits on a network.</p>
+  </section>
+
+  <section class="fgroup" style="padding-top: 0;">
+    <div class="kicker reveal">Private and fair</div>
+    <div class="fgrid">
+      <div class="fcell reveal">
+        <h3>Privacy enforced by iOS</h3>
+        <p>PolyGotcha never requests Full Access, so the operating system itself keeps everything you type on your device. <a href="/privacy">Read the policy</a>; it is short.</p>
+      </div>
+      <div class="fcell reveal">
+        <h3>Typing is free, forever</h3>
+        <p>The keyboard itself never costs a thing. Translation is Pro: a small subscription, or one lifetime purchase if you hate subscriptions too.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="fcta">
+    <span class="pill reveal">Coming soon to the App&nbsp;Store</span>
+    <span class="small-note">Free to download. 7-day free trial of Pro.</span>
+  </div>
+
+  <footer>
+    <div class="frow">
+      <a href="/features">Features</a>
+      <a href="/privacy">Privacy</a>
+      <a href="mailto:dev@polygotcha.com">dev@polygotcha.com</a>
+    </div>
+    <div>&copy; 2026 Igor Moreira</div>
+  </footer>
+
+  <script src="/site.js"></script>
+</body>
+</html>

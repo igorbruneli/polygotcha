@@ -13,18 +13,26 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121316">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1c20'/%3E%3Ctext x='32' y='43' font-family='-apple-system,Helvetica' font-size='32' font-weight='700' fill='%23f7f6f3' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="/style.css">
+  <script>
+    // Apply the stored theme before first paint so there is no flash.
+    try { var t = localStorage.getItem("pg-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
 <body>
 
-  <nav class="nav" id="nav" aria-label="Main">
-    <a class="wordmark" href="/">PolyGotcha</a>
-    <div class="links">
-      <a href="#privacy-first">Privacy</a>
-      <a href="mailto:dev@polygotcha.com">Support</a>
-    </div>
-    <!-- TODO: swap for the App Store URL once 1.0 is live. -->
-    <a class="cta" href="#get">Get the app</a>
-  </nav>
+  <div class="navwrap" id="navwrap">
+    <nav class="nav" aria-label="Main">
+      <a class="wordmark" href="/">PolyGotcha</a>
+      <div class="links">
+        <a href="/features">Features</a>
+        <a href="/privacy">Privacy</a>
+        <a href="mailto:dev@polygotcha.com">Support</a>
+      </div>
+      <!-- TODO: swap for the App Store URL once 1.0 is live. -->
+      <a class="cta" href="#get">Get the app</a>
+    </nav>
+    <button class="theme-bubble" id="theme-toggle" type="button" aria-label="Theme: Auto"></button>
+  </div>
 
   <header class="hero wrap">
     <h1 class="reveal">Type in yours.<br><span class="theirs">Send in theirs.</span></h1>
@@ -84,6 +92,7 @@
 
   <footer>
     <div class="frow">
+      <a href="/features">Features</a>
       <a href="/privacy">Privacy</a>
       <a href="mailto:dev@polygotcha.com">dev@polygotcha.com</a>
     </div>

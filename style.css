@@ -12,8 +12,22 @@
   --card: #ffffff;
 }
 
+/* The theme toggle stamps data-theme on <html>; absent means auto. The
+   manual choice must win over the system preference in both directions,
+   hence the explicit dark block plus the :not() guard on the media query. */
+
+:root[data-theme="dark"] {
+  --bg: #121316;
+  --ink: #f2f2ef;
+  --muted: rgba(242, 242, 239, 0.62);
+  --faint: rgba(242, 242, 239, 0.4);
+  --hairline: rgba(242, 242, 239, 0.14);
+  --glass: rgba(18, 19, 22, 0.62);
+  --card: #1a1b1f;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #121316;
     --ink: #f2f2ef;
     --muted: rgba(242, 242, 239, 0.62);
@@ -42,14 +56,25 @@ a { color: inherit; text-decoration: none; }
 
 ::selection { background: var(--ink); color: var(--bg); }
 
-/* ---------- Nav: the floating glass pill ---------- */
+/* ---------- Nav: the floating glass pill plus the theme bubble ---------- */
 
-.nav {
+.navwrap {
   position: fixed;
   top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  pointer-events: none;
+}
+
+.navwrap > * { pointer-events: auto; }
+
+.nav {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -63,7 +88,28 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
 }
 
-.nav.scrolled {
+.theme-bubble {
+  width: 53px;
+  height: 53px;
+  border-radius: 999px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--hairline);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.4s ease, color 0.25s ease, transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.theme-bubble:hover { color: var(--ink); transform: scale(1.06); }
+
+.theme-bubble svg { width: 21px; height: 21px; fill: currentColor; }
+
+.navwrap.scrolled .nav,
+.navwrap.scrolled .theme-bubble {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
@@ -432,6 +478,98 @@ footer a:hover { color: var(--ink); }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .compose .caret { animation: none; }
+}
+
+/* ---------- Features page ---------- */
+
+.fhero {
+  text-align: center;
+  padding: clamp(140px, 20vw, 200px) 24px 20px;
+}
+
+.fhero h1 {
+  font-size: clamp(2.6rem, 7.5vw, 5rem);
+  letter-spacing: -0.045em;
+  line-height: 1.03;
+  font-weight: 700;
+}
+
+.fhero p {
+  font-size: clamp(1.02rem, 2.1vw, 1.3rem);
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 40ch;
+  margin: 22px auto 0;
+}
+
+.fgroup { max-width: 880px; margin: 0 auto; padding: clamp(36px, 6vw, 64px) 24px 0; }
+
+.fgroup > .kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 18px;
+}
+
+.fgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 640px) {
+  .fgrid { grid-template-columns: 1fr; }
+}
+
+.fcell {
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  padding: 22px 24px;
+}
+
+.fcell h3 {
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  margin-bottom: 7px;
+}
+
+.fcell p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.statband {
+  text-align: center;
+  padding: clamp(70px, 10vw, 110px) 24px;
+}
+
+.statband .big {
+  font-size: clamp(3.4rem, 11vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.statband p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 44ch;
+  margin: 20px auto 0;
+}
+
+.fcta { text-align: center; padding: 20px 24px clamp(80px, 10vw, 120px); }
+
+.fcta .small-note {
+  display: block;
+  font-size: 13.5px;
+  color: var(--faint);
+  margin-top: 16px;
 }
 
 /* ---------- Privacy page ---------- */
