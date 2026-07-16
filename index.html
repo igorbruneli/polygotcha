@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PolyGotcha - The keyboard that translates as you type</title>
+  <meta name="description" content="PolyGotcha is an iOS keyboard that translates as you type. In any app, on your device, with privacy enforced by iOS itself.">
+  <meta property="og:title" content="PolyGotcha">
+  <meta property="og:description" content="The iOS keyboard that translates as you type. On device. Private by construction.">
+  <meta property="og:url" content="https://polygotcha.com">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121316">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1c20'/%3E%3Ctext x='32' y='43' font-family='-apple-system,Helvetica' font-size='32' font-weight='700' fill='%23f7f6f3' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav" aria-label="Main">
+    <a class="wordmark" href="/">PolyGotcha</a>
+    <div class="links">
+      <a href="#privacy-first">Privacy</a>
+      <a href="mailto:dev@polygotcha.com">Support</a>
+    </div>
+    <!-- TODO: swap for the App Store URL once 1.0 is live. -->
+    <a class="cta" href="#get">Get the app</a>
+  </nav>
+
+  <header class="hero wrap">
+    <h1 class="reveal">Type in yours.<br><span class="theirs">Send in theirs.</span></h1>
+    <p class="reveal">PolyGotcha is an iOS keyboard that translates as you type. In any app, on your device.</p>
+    <div class="cta-row reveal" id="get">
+      <span class="pill">Coming soon to the App&nbsp;Store</span>
+      <a class="quiet-link" href="/privacy">Read the privacy policy</a>
+    </div>
+  </header>
+
+  <section class="demo wrap reveal">
+    <div class="device" id="device" aria-label="Animated demo: a message typed in English is translated to French by the keyboard">
+      <div class="chat">
+        <span class="bubble" id="bubble">Salut ! Tu viens ce soir ?</span>
+        <div class="compose">
+          <span class="text" id="composed"></span><span class="caret" id="caret"></span>
+        </div>
+      </div>
+      <div class="kbd">
+        <div class="kbar">
+          <span class="kchip"><span id="chip-from">EN</span><span class="arrows">&#8644;</span><span id="chip-to">FR</span></span>
+          <span class="kstatus" id="kstatus">Type, pause, translate</span>
+          <span class="kround prime" id="kaction">&#10003;</span>
+          <span class="kround">&#9881;</span>
+        </div>
+        <div id="krows"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature wrap" id="privacy-first">
+    <div class="kicker reveal">Private by construction</div>
+    <h2 class="reveal">Never asks for Full&nbsp;Access.</h2>
+    <p class="reveal">Full Access is the permission that lets keyboards reach the internet. PolyGotcha never requests it, so iOS itself keeps everything you type on your device. No servers, no analytics, no tracking. Nothing to trust, only how iPhone works.</p>
+  </section>
+
+  <section class="feature wrap">
+    <div class="kicker reveal">On-device intelligence</div>
+    <h2 class="reveal">Apple Intelligence does the translating.</h2>
+    <p class="reveal">Translation runs on your iPhone with Apple's models. Pick a tone, casual, formal, or street, and the translation follows. It detects the language you typed and picks the direction automatically.</p>
+  </section>
+
+  <section class="feature wrap">
+    <div class="kicker reveal">Made for conversations</div>
+    <h2 class="reveal">Type. Pause. Send.</h2>
+    <p class="reveal">Write your message normally and the translation appears above the keys. One tap replaces your text; undo is one tap away. It works in every app, from Messages to WhatsApp to email.</p>
+    <div class="langline reveal">Ol&aacute;. Bonjour. <em>Hello.</em></div>
+  </section>
+
+  <section class="manifesto">
+    <div class="wrap">
+      <h2 class="reveal">Privacy that doesn't depend on promises.</h2>
+      <p class="reveal">Most keyboards ask you to trust a privacy policy. PolyGotcha is built so the operating system enforces one. Read ours anyway; it is short, because there is nothing to disclose.</p>
+      <a class="pill reveal" href="/privacy">Read the privacy policy</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="frow">
+      <a href="/privacy">Privacy</a>
+      <a href="mailto:dev@polygotcha.com">dev@polygotcha.com</a>
+    </div>
+    <div>&copy; 2026 Igor Moreira</div>
+  </footer>
+
+  <script src="/site.js"></script>
+</body>
+</html>
