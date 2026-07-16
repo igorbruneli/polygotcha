@@ -106,7 +106,29 @@ a { color: inherit; text-decoration: none; }
 
 .theme-bubble:hover { color: var(--ink); transform: scale(1.06); }
 
-.theme-bubble svg { width: 21px; height: 21px; fill: currentColor; }
+.theme-bubble svg {
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+  animation: theme-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-bubble:hover svg { transform: rotate(18deg); }
+
+/* The icon shows the theme you are IN: an amber sun or a periwinkle moon,
+   popping in with a spin every time the theme flips. */
+.theme-bubble.is-light svg { fill: #f5a81c; }
+.theme-bubble.is-dark svg { fill: #93a5ff; }
+
+@keyframes theme-pop {
+  from { transform: rotate(-130deg) scale(0.3); opacity: 0; }
+  to { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-bubble svg { animation: none; transition: none; }
+}
 
 .navwrap.scrolled .nav,
 .navwrap.scrolled .theme-bubble {
@@ -150,10 +172,20 @@ a { color: inherit; text-decoration: none; }
 
 .nav .cta:hover { transform: scale(1.04); }
 
-@media (max-width: 560px) {
-  .nav { padding-left: 16px; }
-  .nav .links a { padding: 8px 8px; }
-  .nav .wordmark { margin-right: 6px; }
+/* Mobile nav: everything tightens, and the Support link (whose email is in
+   the footer anyway) yields first so the pill never overflows. */
+@media (max-width: 640px) {
+  .navwrap { top: 10px; gap: 6px; padding: 0 10px; }
+  .nav { padding: 5px 5px 5px 14px; gap: 0; }
+  .nav .wordmark { font-size: 15px; margin-right: 6px; }
+  .nav .links a { font-size: 13px; padding: 7px 7px; }
+  .nav .cta { font-size: 13px; padding: 8px 13px; margin-left: 5px; }
+  .theme-bubble { width: 44px; height: 44px; }
+  .theme-bubble svg { width: 19px; height: 19px; }
+}
+
+@media (max-width: 430px) {
+  .nav .links .sup { display: none; }
 }
 
 /* ---------- Shared layout ---------- */
