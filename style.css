@@ -349,7 +349,10 @@ section { padding: clamp(80px, 11vw, 140px) 0; }
 
 /* ---------- The keyboard demo ---------- */
 
-.demo { padding-top: 0; }
+/* The device is sized against the viewport (94vw), so the section sheds the
+   wrap's side padding: inside the padded box, 94vw outgrows the content
+   width on phones and the overflow leans right, off-center. */
+.demo { padding-top: 0; padding-left: 0; padding-right: 0; }
 
 .device {
   width: min(430px, 94vw);
