@@ -26,11 +26,20 @@
   var dicts = window.PG_I18N || {};
   var langNames = window.PG_LANGS || { en: "English" };
   var lang = "en";
+  // True once the language is part of the URL contract: a ?lang= arrival or
+  // a picker click. Only then do we write the key back into the address bar
+  // and internal links, so bare visits keep clean URLs.
+  var shareLang = false;
   try {
-    var requested = new URLSearchParams(location.search).get("lang")
-      || localStorage.getItem("pg-lang");
+    var fromUrl = new URLSearchParams(location.search).get("lang");
+    var requested = fromUrl || localStorage.getItem("pg-lang");
     if (requested && langNames[requested]) {
       lang = requested;
+      if (fromUrl && langNames[fromUrl]) {
+        // A shared link is an explicit choice; keep it across pages.
+        shareLang = true;
+        try { localStorage.setItem("pg-lang", fromUrl); } catch (e) {}
+      }
     } else {
       var preferred = navigator.languages || [navigator.language || "en"];
       for (var i = 0; i < preferred.length; i++) {
@@ -39,6 +48,23 @@
       }
     }
   } catch (e) {}
+
+  function syncLangUrl(code) {
+    if (!shareLang || !window.history || !history.replaceState) return;
+    try {
+      var url = new URL(location.href);
+      url.searchParams.set("lang", code);
+      history.replaceState(null, "", url);
+    } catch (e) {}
+    // Carry the key through internal navigation so the URL stays shareable.
+    document.querySelectorAll('a[href^="/"]').forEach(function (link) {
+      var raw = link.getAttribute("href");
+      var hashIndex = raw.indexOf("#");
+      var hash = hashIndex === -1 ? "" : raw.slice(hashIndex);
+      var path = (hashIndex === -1 ? raw : raw.slice(0, hashIndex)).split("?")[0];
+      link.setAttribute("href", path + "?lang=" + code + hash);
+    });
+  }
 
   function t(key, fallback) {
     var dict = dicts[lang];
@@ -66,6 +92,7 @@
     }
     var cta = document.querySelector(".nav .cta");
     if (cta) cta.setAttribute("aria-label", t("nav.get", "Get the app"));
+    syncLangUrl(code);
     if (themeRefresh) themeRefresh();
   }
 
@@ -84,6 +111,7 @@
       if (code === lang) item.classList.add("active");
       item.addEventListener("click", function () {
         try { localStorage.setItem("pg-lang", code); } catch (e) {}
+        shareLang = true;
         applyLang(code);
         langMenu.querySelectorAll("button").forEach(function (other) {
           other.classList.toggle("active", other === item);

@@ -14,10 +14,31 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121316">
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://polygotcha.com/">
+  <link rel="alternate" hreflang="en" href="https://polygotcha.com/">
+  <link rel="alternate" hreflang="pt" href="https://polygotcha.com/?lang=pt">
+  <link rel="alternate" hreflang="fr" href="https://polygotcha.com/?lang=fr">
+  <link rel="alternate" hreflang="ro" href="https://polygotcha.com/?lang=ro">
+  <link rel="alternate" hreflang="it" href="https://polygotcha.com/?lang=it">
+  <link rel="alternate" hreflang="x-default" href="https://polygotcha.com/">
   <link rel="stylesheet" href="/style.css">
   <script>
     // Apply the stored theme before first paint so there is no flash.
     try { var t = localStorage.getItem("pg-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <!-- TODO: add "installUrl" with the App Store link once 1.0 is live. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PolyGotcha",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "description": "An iOS keyboard that translates as you type. On device, in any app, with privacy enforced by iOS itself.",
+    "url": "https://polygotcha.com/",
+    "image": "https://polygotcha.com/icon-512.png",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
   </script>
 </head>
 <body>
