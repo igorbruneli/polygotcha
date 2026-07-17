@@ -247,10 +247,12 @@ a { color: inherit; text-decoration: none; }
 
 /* Mobile nav: the ends collapse to icons (the app icon and a download
    glyph). With two bubbles alongside, the Support link (email is in the
-   footer) yields on phones. */
+   footer) yields on phones. Long localized labels (French) can outgrow a
+   narrow pill, so the row is allowed to wrap: the bubbles drop to a second
+   centered line instead of anything getting cropped. */
 @media (max-width: 640px) {
-  .navwrap { top: 10px; gap: 6px; padding: 0 10px; }
-  .nav { padding: 5px 5px 5px 8px; gap: 0; }
+  .navwrap { top: 10px; gap: 6px; padding: 0 10px; flex-wrap: wrap; row-gap: 8px; }
+  .nav { padding: 5px 5px 5px 8px; gap: 0; max-width: 100%; }
   .nav .wordmark { margin-right: 4px; }
   .nav .wordmark .name { display: none; }
   .nav .mark { width: 30px; height: 30px; border-radius: 9px; }
@@ -263,6 +265,16 @@ a { color: inherit; text-decoration: none; }
   .theme-bubble svg { width: 19px; height: 19px; }
   .lang-bubble { font-size: 11.5px; }
 }
+
+/* Very narrow screens with long localized labels: tighten the links a
+   notch further so the pill itself never clips. */
+@media (max-width: 400px) {
+  .nav .links a { font-size: 12px; padding: 7px 6px; letter-spacing: -0.01em; }
+  .nav .wordmark { margin-right: 2px; }
+}
+
+/* The binding-text note only carries information on translated views. */
+html[lang="en"] [data-i18n="priv.note"] { display: none; }
 
 /* ---------- Shared layout ---------- */
 
