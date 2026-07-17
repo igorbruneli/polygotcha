@@ -200,18 +200,32 @@
 
   // ----- Scroll reveals -----
 
+  // Fire as soon as an element's edge clears the bottom tenth of the
+  // viewport: iOS throttles observer callbacks during momentum scrolling,
+  // and a visibility threshold on tall elements makes reveals land late and
+  // pop mid-screen. Elements arriving in the same callback cascade with a
+  // short delay instead of appearing as one block; the inline delay is
+  // cleared afterwards so it cannot slow any later transition.
   var reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
+        var batch = 0;
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            io.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          el.style.transitionDelay = Math.min(batch * 70, 350) + "ms";
+          batch += 1;
+          el.addEventListener(
+            "transitionend",
+            function () { el.style.transitionDelay = ""; },
+            { once: true }
+          );
+          el.classList.add("in");
+          io.unobserve(el);
         });
       },
-      { threshold: 0.18 }
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 }
     );
     reveals.forEach(function (el) { io.observe(el); });
   } else {
