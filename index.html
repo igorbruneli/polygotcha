@@ -26,7 +26,6 @@
     // Apply the stored theme before first paint so there is no flash.
     try { var t = localStorage.getItem("pg-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
-  <!-- TODO: add "installUrl" with the App Store link once 1.0 is live. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,6 +35,7 @@
     "applicationCategory": "UtilitiesApplication",
     "description": "An iOS keyboard that translates as you type. On device, in any app, with privacy enforced by iOS itself.",
     "url": "https://polygotcha.com/",
+    "installUrl": "https://apps.apple.com/app/polygotcha/id6789138245",
     "image": "https://polygotcha.com/icon-512.png",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
@@ -51,8 +51,7 @@
         <a href="/privacy" data-i18n="nav.privacy">Privacy</a>
         <a class="sup" href="mailto:dev@polygotcha.com" data-i18n="nav.support">Support</a>
       </div>
-      <!-- TODO: swap for the App Store URL once 1.0 is live. -->
-      <a class="cta" href="#get" aria-label="Get the app"><span class="cta-text" data-i18n="nav.get">Get the app</span><svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></svg></a>
+      <a class="cta" href="https://apps.apple.com/app/polygotcha/id6789138245" aria-label="Get the app"><span class="cta-text" data-i18n="nav.get">Get the app</span><svg class="cta-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></svg></a>
     </nav>
     <div class="lang-wrap">
       <button class="lang-bubble" id="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language">EN</button>
@@ -65,7 +64,10 @@
     <h1 class="reveal" data-i18n="hero.h1">Type in yours.<br><span class="theirs">Send in theirs.</span></h1>
     <p class="reveal" data-i18n="hero.p">PolyGotcha is an iOS keyboard that translates as you type. In any app, on your device.</p>
     <div class="cta-row reveal" id="get">
-      <span class="pill" data-i18n="hero.cta">Coming soon to the App&nbsp;Store</span>
+      <a class="pill store-pill" href="https://apps.apple.com/app/polygotcha/id6789138245">
+        <svg class="applogo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10.4"/><path d="M8.1 16 12 8.9 15.9 16"/><path d="M9.5 13.6h5"/></svg>
+        <span data-i18n="hero.cta">Download on the App&nbsp;Store</span>
+      </a>
       <a class="quiet-link" href="/privacy" data-i18n="hero.privacylink">Read the privacy policy</a>
     </div>
   </header>
