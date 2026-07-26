@@ -59,19 +59,23 @@
     tracking of any kind. We operate no servers.</p>
 
     <h2 data-i18n="pv.h2">Your keystrokes</h2>
-    <p data-i18n="pv.p2">The PolyGotcha keyboard never requests Full Access. Because of that, iOS
-    itself prevents the keyboard from reaching the internet or sharing data with
-    any other app, including our own. What you type is passed directly to the
-    app you are typing in, and to Apple's translation frameworks on your device
-    when you use translation.</p>
+    <p data-i18n="pv.p2">The PolyGotcha keyboard ships with Full Access switched off, and never
+    prompts you to turn it on. While it is off, iOS itself prevents the keyboard
+    from reaching the internet or sharing data with any other app, including our
+    own. What you type is passed directly to the app you are typing in, and to
+    Apple's translation frameworks on your device when you use translation.
+    Turning Full Access on, which iOS requires before any keyboard can use the
+    Apple Translation model, does not change what we do with your text: we
+    operate no servers, so there is no destination for it.</p>
 
     <h2 data-i18n="pv.h3">Translation</h2>
     <p data-i18n="pv.p3a">Translation is performed by Apple's models on your device:</p>
     <ul>
-      <li data-i18n="pv.li1">Apple Intelligence, the current translation model, runs entirely on your
-      iPhone. Text it processes never leaves your device.</li>
-      <li data-i18n="pv.li2">Apple Translation, also fully on-device, is included in the app but stays
-      disabled until Apple makes it available to keyboards.</li>
+      <li data-i18n="pv.li1">Apple Intelligence, the default model, runs entirely on your iPhone. Text
+      it processes never leaves your device, and it requires no permissions.</li>
+      <li data-i18n="pv.li2">Apple Translation, also fully on-device, is optional. iOS only exposes it
+      to a keyboard when Full Access is enabled, so it stays unavailable unless
+      you choose that model and turn the permission on yourself.</li>
     </ul>
     <p data-i18n="pv.p3b">The current version never uses the network for translation. If a future
     version offers Apple's Private Cloud Compute model, it would send the text
