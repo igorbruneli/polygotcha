@@ -298,6 +298,15 @@ section { padding: clamp(80px, 11vw, 140px) 0; }
   text-align: center;
 }
 
+.hero .kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
 .hero h1 {
   font-size: clamp(2.9rem, 9vw, 6.2rem);
   line-height: 1.02;
